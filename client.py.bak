@@ -9,7 +9,7 @@ from textwrap import dedent
 
 class OnamaeDDNSError(Exception):
     """Error in the interaction with DDNS server.
-    
+
     Note that the server may response with error due to the previous command.
     This class shows the reason of the error based on its error code rather than
     the command for which the server returns the error.
@@ -102,7 +102,7 @@ def update_domain_ip(env, ip):
 
         res = modip(sslsock, env, ip)
         enforce_success_response(res, "Failed to modify IP address")
-        
+
         res = logout(sslsock)
         enforce_success_response(res, "Failed to logout")
     finally:
