@@ -1,4 +1,3 @@
-#!/usr/bin/env python2
 import os
 import socket
 import ssl
@@ -32,7 +31,7 @@ def get_global_ip():
     url = 'https://ifconfig.me'
     try:
         res = urllib.request.urlopen(url, timeout = 5)
-        return res.read()
+        return res.read().decode()
     except urllib.error.URLError as e:
         print(e)
         raise Exception("%s: %s" % (e.reason, url))
@@ -51,11 +50,11 @@ def connect(sock, server, port):
     return sock.recv(1024)
 
 def send_command(sock, cmd):
-    sock.sendall(dedent(cmd)[1:])
+    sock.sendall(dedent(cmd).encode())
     return sock.recv(1024)
 
 def login(sock, env):
-    cmd = '''
+    cmd = '''\
         LOGIN
         USERID:%s
         PASSWORD:%s
@@ -64,7 +63,7 @@ def login(sock, env):
     return send_command(sock, cmd)
 
 def modip(sock, env, ip):
-    cmd = '''
+    cmd = '''\
         MODIP
         HOSTNAME:%s
         DOMNAME:%s
@@ -74,7 +73,7 @@ def modip(sock, env, ip):
     return send_command(sock, cmd)
 
 def logout(sock):
-    cmd = '''
+    cmd = '''\
         LOGOUT
         .
         '''
