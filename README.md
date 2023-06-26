@@ -17,7 +17,8 @@ uvicorn api:app
 
 ## 謝辞
 
-内部処理に @tom-tan の
+内部処理に[Tomoya Tanjo](https://github.com/tom-tan)さんの[onamae-ddns-client](https://github.com/tom-tan/onamae-ddns-client)を利用しています。
+ありがとうございます。
 
 ## 参考
 
