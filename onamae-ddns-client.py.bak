@@ -2,7 +2,7 @@
 import os
 import socket
 import ssl
-import urllib.request, urllib.error, urllib.parse
+import urllib2
 
 from collections import defaultdict
 from textwrap import dedent
@@ -31,9 +31,9 @@ class OnamaeDDNSError(Exception):
 def get_global_ip():
     url = 'https://ifconfig.me'
     try:
-        res = urllib.request.urlopen(url, timeout = 5)
+        res = urllib2.urlopen(url, timeout = 5)
         return res.read()
-    except urllib.error.URLError as e:
+    except urllib2.URLError as e:
         print(e)
         raise Exception("%s: %s" % (e.reason, url))
 
@@ -113,7 +113,7 @@ if __name__ == '__main__':
     try:
         env_file = '.env'
         if not os.path.exists(env_file):
-            print(('File not found: %s' % env_file))
+            print('File not found: %s' % env_file)
             exit(1)
 
         env = read_env(env_file)
